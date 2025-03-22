@@ -1,6 +1,6 @@
-# Renrag ColBERT
+# RenRAG ColBERT
 
-A Python library for semantic document indexing and searching using the [ColBERT](https://huggingface.co/colbert-ir/colbertv2.0) retrieval model. Renrag ColBERT provides a simplified, high-performance interface for building and querying semantic search indices.
+A Python library for semantic document indexing and searching using the [ColBERT](https://huggingface.co/colbert-ir/colbertv2.0) retrieval model. RenRAG ColBERT provides a simplified, high-performance interface for building and querying semantic search indices.
 
 ## Features
 
