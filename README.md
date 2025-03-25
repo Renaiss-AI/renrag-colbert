@@ -76,7 +76,7 @@ indexer = ColbertIndexer(model_name="colbert-ir/colbertv2.0")
 # Create an empty index
 empty_index_path = indexer.create_index(
     index_name="my_empty_index",
-    index_dir=".renrag/indexes",  # Optional - default is .renrag/indexes
+    index_dir=".renrag/index",  # Optional - default is .renrag/index
     overwrite=False  # Optional - by default, will raise an error if index already exists
 )
 print(f"Empty index created at: {empty_index_path}")
@@ -154,7 +154,7 @@ index_path = indexer.index(
     file_ids=file_ids,  # Optional
     doc_ids=doc_ids,  # Optional - if not provided, UUIDs will be generated
     index_name="my_colbert_index",
-    collection_dir="./indices",  # Optional - default is ./indices
+    index_dir=".renrag/index",  # Optional - default is .renrag/index
     overwrite=False  # Optional - by default, will raise an error if index already exists
 )
 print(f"Index created at: {index_path}")
@@ -173,7 +173,7 @@ index_path = indexer.index(
 from renrag_colbert import ColbertSearcher
 
 # Initialize the searcher with the path to your index
-searcher = ColbertSearcher(index_path="./indices/my_colbert_index")
+searcher = ColbertSearcher(index_path=".renrag/index/my_colbert_index")
 
 # Basic search - returns top k results
 results = searcher.search("How does ColBERT work?", k=3)
@@ -229,7 +229,7 @@ indexer = ColbertIndexer()
 
 # Add a single document
 doc_id = indexer.add_document(
-    index_path="./indices/my_colbert_index",
+    index_path=".renrag/index/my_colbert_index",
     document="ColBERT is a powerful retrieval model for efficient search.",
     doc_id="custom-id-123",  # Optional, UUID generated if None
     file_id="document.pdf",  # Optional
@@ -243,7 +243,7 @@ print(f"Added document with ID: {doc_id}")
 
 # Add multiple documents at once for better performance
 doc_ids = indexer.add_documents(
-    index_path="./indices/my_colbert_index",
+    index_path=".renrag/index/my_colbert_index",
     documents=[
         "First document to add",
         "Second document to add"
@@ -258,7 +258,7 @@ doc_ids = indexer.add_documents(
 print(f"Added document IDs: {doc_ids}")
 
 # After addition, reload the searcher index
-searcher.reload_index("./indices/my_colbert_index")
+searcher.reload_index(".renrag/index/my_colbert_index")
 ```
 
 ### Removing Documents
@@ -271,22 +271,22 @@ indexer = ColbertIndexer()
 
 # Remove document by document ID
 removed_ids = indexer.remove_documents(
-    index_path="./indices/my_colbert_index",
+    index_path=".renrag/index/my_colbert_index",
     doc_id="doc-001"
 )
 print(f"Removed document IDs: {removed_ids}")
 
 # Remove documents by file ID
 removed_ids = indexer.remove_documents(
-    index_path="./indices/my_colbert_index",
+    index_path=".renrag/index/my_colbert_index",
     file_id="document.pdf"  # Removes all documents with this file ID
 )
 print(f"Removed document IDs: {removed_ids}")
 
 # After removal, reload the searcher index
-searcher = ColbertSearcher(index_path="./indices/my_colbert_index")
+searcher = ColbertSearcher(index_path=".renrag/index/my_colbert_index")
 # Or if searcher already exists:
-searcher.reload_index("./indices/my_colbert_index")
+searcher.reload_index(".renrag/index/my_colbert_index")
 ```
 
 # API Reference
@@ -304,7 +304,7 @@ The main class for creating and managing search indices.
 - Creates an empty index structure without documents
 - Returns the path to the created index
 
-#### `index(documents, index_name, document_metadata=None, file_ids=None, doc_ids=None, collection_dir=None, overwrite=False)`
+#### `index(documents, index_name, document_metadata=None, file_ids=None, doc_ids=None, index_dir=None, overwrite=False)`
 - Creates a new index with the provided documents and metadata
 - Returns the path to the created index
 

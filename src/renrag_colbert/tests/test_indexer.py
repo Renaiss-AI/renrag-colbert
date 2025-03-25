@@ -37,7 +37,7 @@ class TestColbertIndexer(unittest.TestCase):
             index_path = indexer.index(
                 documents=documents,
                 index_name="test_index",
-                collection_dir=temp_dir
+                index_dir=temp_dir
             )
             
             # Assertions

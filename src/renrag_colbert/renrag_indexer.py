@@ -358,7 +358,7 @@ class ColbertIndexer:
             >>> indexer.add_document(empty_index_path, "This is a document")
         """
         if index_dir is None:
-            index_dir = Path(".renrag/indexes")
+            index_dir = Path(".renrag/index")
         elif isinstance(index_dir, str):
             index_dir = Path(index_dir)
             
@@ -406,7 +406,7 @@ class ColbertIndexer:
               document_metadata: Optional[List[Dict[str, Any]]] = None,
               file_ids: Optional[List[str]] = None,
               doc_ids: Optional[List[str]] = None,
-              collection_dir: Optional[Union[str, Path]] = None,
+              index_dir: Optional[Union[str, Path]] = None,
               overwrite: bool = False) -> str:
         """
         Index a list of documents with a simplified ColBERT approach.
@@ -417,7 +417,7 @@ class ColbertIndexer:
             document_metadata: Optional list of metadata dictionaries, one per document
             file_ids: Optional list of file identifiers, one per document
             doc_ids: Optional list of document identifiers. If not provided, unique UUIDs will be generated
-            collection_dir: Directory to store the index. If None, will use ./indices/
+            index_dir: Directory to store the index. If None, will use .renrag/index/
             overwrite: Whether to overwrite the index if it already exists. If False and the index exists, 
                       an error will be raised.
                             
@@ -427,13 +427,12 @@ class ColbertIndexer:
         Raises:
             ValueError: If the index already exists and overwrite is False
         """
-        # Map collection_dir to index_dir for consistency with create_index
-        index_dir = collection_dir
+        # Use index_dir for consistency with create_index method
         
         # First create or overwrite the index structure
         index_path_str = self.create_index(
             index_name=index_name,
-            index_dir=index_dir if index_dir is not None else "./indices",
+            index_dir=index_dir if index_dir is not None else ".renrag/index",
             overwrite=overwrite
         )
         index_path = Path(index_path_str)

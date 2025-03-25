@@ -148,7 +148,7 @@ def main():
             file_ids=file_ids,
             doc_ids=doc_ids,
             index_name=index_name,
-            collection_dir=index_dir,
+            index_dir=index_dir,
             overwrite=True
         )
         
