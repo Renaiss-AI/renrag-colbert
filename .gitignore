@@ -46,3 +46,5 @@ Thumbs.db
 # Test coverage
 .coverage
 htmlcov/
+.ropeproject/
+.ruff_cache/
