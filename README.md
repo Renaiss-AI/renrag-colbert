@@ -217,7 +217,7 @@ multi_file_results = searcher.search(
 )
 ```
 
-The similarity scores are normalized between 0.0 and 1.0, with a precision of four decimal places. Use the threshold parameter to filter results by minimum similarity score. You can also filter search results by file ID using the filter_by_files parameter to narrow down the search to specific documents or document groups.
+The similarity scores are normalized between 0.0 and 1.0, with a precision of four decimal places. Scores are relative to the best match in the result set, ensuring better score distribution with more differentiation between results. Use the threshold parameter to filter results by minimum similarity score. You can also filter search results by file ID using the filter_by_files parameter to narrow down the search to specific documents or document groups.
 
 ### Adding Documents to an Existing Index
 
